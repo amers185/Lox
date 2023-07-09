@@ -230,7 +230,7 @@ class Scanner {
     }
 
     private void addToken(TokenType type) {
-        System.out.println(type);
+//        System.out.println(type);
         addToken(type, null);
     }
 

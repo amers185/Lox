@@ -17,7 +17,6 @@ public class Lox {
             System.out.println("Usage: jlox [script]");
             System.exit(64); // [64]
         } else if (args.length == 1) {
-            System.out.println("here");
             runFile(args[0]);
         } else {
             runPrompt();
@@ -55,6 +54,11 @@ public class Lox {
         List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error.
+        if (hadError) return;
+
+        Resolver resolver = new Resolver(interpreter);
+        resolver.resolve(statements);
+
         if (hadError) return;
 
         interpreter.interpret(statements);
